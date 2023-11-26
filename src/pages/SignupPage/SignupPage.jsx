@@ -124,12 +124,6 @@ function SignUpPage({handleSignUpOrLogin}) {
               onChange={handleChange}
               required
             />
-            <Form.TextArea
-              label="bio"
-              name="bio"
-              placeholder="Tell us more about your dogs..."
-              onChange={handleChange}
-            />
             <Form.Field>
               <Form.Input
                 type="file"
