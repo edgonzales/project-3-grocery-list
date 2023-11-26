@@ -22,8 +22,7 @@ function SignUpPage({handleSignUpOrLogin}) {
 	username: '',
 	email: '',
 	password: '',
-	passwordConf: '',
-	bio: ''
+	passwordConf: ''
   })
 
   const [photo, setPhoto] = useState('')
