@@ -4,13 +4,22 @@ import "./App.css";
 
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignupPage/SignupPage"
+import ProductsPage from "./pages/ProductsPage/ProductsPage";
+import AddProductPage from "./pages/AddProductPage/AddProductPage";
 
 import userService from "./utils/userService";
-import ProductsPage from "./pages/ProductsPage/ProductsPage";
 
 function App() {
 
   const [user, setUser] = useState(userService.getUser());
+
+  // 
+  function logout() {
+    userService.logout();
+    setUser(null);
+  }
+
+
   function handleSignUpOrLogin() {
     setUser(userService.getUser());
   }
@@ -47,6 +56,12 @@ function App() {
         path="/products"
         element={<ProductsPage />}
       />
+      <Route
+        path="/addProduct"
+        element={<AddProductPage />}
+      />
+
+      
     </Routes>
   );
 }
