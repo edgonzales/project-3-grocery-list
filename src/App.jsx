@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignupPage/SignupPage"
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import AddProductPage from "./pages/AddProductPage/AddProductPage";
+import PageHeader from "./components/PageHeader/PageHeader";
 
 import userService from "./utils/userService";
 
@@ -43,7 +44,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<h1>Home Pageeeeeeeeeee</h1>} />
+      <Route path="/" element={<h1>Home Page</h1>} />
       <Route 
         path="/login" 
         element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} 
@@ -54,11 +55,11 @@ function App() {
       />
       <Route 
         path="/products"
-        element={<ProductsPage />}
+        element={<ProductsPage PageHeader/>}
       />
       <Route
         path="/addProduct"
-        element={<AddProductPage />}
+        element={<AddProductPage PageHeader/>}
       />
 
       
