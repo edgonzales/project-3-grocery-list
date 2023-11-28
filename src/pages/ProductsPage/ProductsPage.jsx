@@ -6,7 +6,7 @@ export default function ProductsPage() {
 
     const navigate = useNavigate();
 
-    function handleClick(){
+    function handleClick() {
         navigate('/addProduct')
     }
 
@@ -26,10 +26,10 @@ export default function ProductsPage() {
                 </div>
             </GridRow>
             <GridRow>
-                <button 
+                <button
                     onClick={handleClick}
                     class="positive ui button">
-                        Add a Product
+                    Add a Product
                 </button>
             </GridRow>
         </Grid>

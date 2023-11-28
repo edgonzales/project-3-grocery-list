@@ -8,8 +8,8 @@ export default function AddProductPage() {
   const [state, setState] = useState({
     productName: '',
     price: '', // turn this into an int
+    category: '',
     description: '',
-    category: ''
   })
 
   const [photo, setPhoto] = useState('')
@@ -74,18 +74,18 @@ export default function AddProductPage() {
               required
             />
             <Form.Input
-              name="description"
-              type="description"
-              placeholder="description"
-              value={state.description}
-              onChange={handleChange}
-              required
-            />
-            <Form.Input
               name="category"
               type="category"
               placeholder="Category"
               value={state.category}
+              onChange={handleChange}
+              required
+            />
+            <Form.Input
+              name="description"
+              type="description"
+              placeholder="Description"
+              value={state.description}
               onChange={handleChange}
               required
             />
