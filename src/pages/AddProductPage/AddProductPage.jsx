@@ -7,7 +7,7 @@ import tokenService from "../../utils/tokenService";
 export default function AddProductPage() {
   const [state, setState] = useState({
     productName: '',
-    price: '', // turn this into an int
+    price: '',
     category: '',
     description: '',
   })
@@ -44,6 +44,7 @@ export default function AddProductPage() {
       // and we have a parsed response from the server (data)
       console.log(data, " <- response data from the server");
 
+      
       // Now we can update the state!
       setProducts([data.product, ...products]);
     } catch (err) {

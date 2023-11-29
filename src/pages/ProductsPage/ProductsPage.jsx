@@ -1,9 +1,11 @@
 import PageHeader from "../../components/PageHeader/PageHeader";
-import { Grid, GridRow } from "semantic-ui-react";
+import { Grid, GridRow, Card } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
+import AllProducts from "../../components/AllProducts/AllProducts";
+import { useState } from "react";
 
 export default function ProductsPage() {
-
+    const [products, setProducts] = useState([]);
     const navigate = useNavigate();
 
     function handleClick() {
@@ -11,7 +13,7 @@ export default function ProductsPage() {
     }
 
     return (
-        <Grid>
+        <Grid centered>
             <GridRow>
                 <PageHeader />
             </GridRow>
@@ -24,6 +26,11 @@ export default function ProductsPage() {
                     {/* handleSearch is needed for search button */}
                     <button className="ui button">Search</button>
                 </div>
+            </GridRow>
+            <GridRow>
+                <AllProducts
+                    products={products}
+                />
             </GridRow>
             <GridRow>
                 <button
