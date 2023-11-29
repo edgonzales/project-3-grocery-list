@@ -6,7 +6,7 @@ const multer = require('multer');
 const upload = multer();
 
 /*---------- Public Routes ----------*/
-router.post("/addProduct", upload.single('photo'), productsCtrl.addProduct);
+router.post('/', upload.single('photo'), productsCtrl.create);
 
 /*---------- Protected Routes ----------*/
 

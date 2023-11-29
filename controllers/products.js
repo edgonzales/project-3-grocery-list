@@ -1,7 +1,7 @@
 const Product = require('../models/product');
 
 module.exports = {
-    addProduct
+    create
 };
 
 // import the s3 constructor (class)
@@ -13,33 +13,45 @@ const s3 = new S3()
 // require nodes unique id function 
 const { v4: uuidv4 } = require('uuid');
 
-async function addProduct(req, res) {
-    console.log(req.body, req.file)
+function create(req, res) {
+    console.log(req.file, req.body, req.user)
+    // check to make sure a file was sent over
+    if (!req.file) return res.status(400).json({ error: 'Please submit a photo' })
 
-    // check to make sure the user sent over a file
-    if (!req.file) return res.status(400).json({ error: 'Please Submit a Photo!' });
-    // create the filePath of where we will store our image on s3
+    // now submit file to aws!
     const filePath = `grocerylist/${uuidv4()}-${req.file.originalname}`
     // then make the params object that s3 object wants to send to send to aws s3 bucket
     const params = { Bucket: process.env.BUCKET_NAME, Key: filePath, Body: req.file.buffer }
-    // req.file.buffer is the actual image!
-
-    s3.upload(params, async function (err, data) { // <- err, data are the response from aws s3 bucket!
+    // upload it s3
+    s3.upload(params, async function (err, data) { // <- data is the response from aws with data.Location (where your file is stored)
+        // we want to put data.Location value in the db
         if (err) {
             console.log('=========================')
             console.log(err, ' <-- error from aws, probably wrong keys in your code ~/.aws/credentials file, or you have the wrong bucket name, are you sure you know what process.env.BUCKET_NAME is, did you log it out?')
             console.log('==========================')
         }
 
-        const product = new Product({ ...req.body, photoUrl: data.Location }); // data.Location is the address 
-        // of our photo we added to s3
+        // Now we want to use our model to create the POST in the database!
         try {
-            await product.save();
-            const token = createJWT(product);
-            res.json({ token }); // set('toJSON',) in product model is being called, and deleting the products password from the token
+            // adding the information to the db
+            const productDoc = await Product.create({
+                //user: req.user, // req.user is from the jwt, token the client sent over (config/auth) is where req.user is set from the token
+                productName: req.body.productName, // req.body contains the text inputs from the form request
+                price: req.body.price,
+                category: req.body.category,
+                description: req.body.description,
+                photoUrl: data.Location, // <- data.Location is the response from aws, where our photo is stored
+            })
+
+            // populate the users information
+            //await productDoc.populate('user')
+            // respond to the client!
+            // status 201, means resource created!
+            res.status(201).json({ product: productDoc })
+
         } catch (err) {
-            // Probably a duplicate email
-            res.status(400).json(err);
+            console.log(err, " <- error in create product")
+            res.json({ error: 'Problem with creating a product, try again' })
         }
     })
 }

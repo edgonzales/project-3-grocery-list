@@ -19,16 +19,16 @@ export default function ProductsPage() {
                 <h1>Products Page</h1>
             </GridRow>
             <GridRow>
-                <div class="ui action input">
+                <div className="ui action input">
                     <input type="text" placeholder="Search..." />
                     {/* handleSearch is needed for search button */}
-                    <button class="ui button">Search</button>
+                    <button className="ui button">Search</button>
                 </div>
             </GridRow>
             <GridRow>
                 <button
                     onClick={handleClick}
-                    class="positive ui button">
+                    className="positive ui button">
                     Add a Product
                 </button>
             </GridRow>
