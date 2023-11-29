@@ -1,7 +1,8 @@
 const Product = require('../models/product');
 
 module.exports = {
-    create
+    create,
+    index
 };
 
 // import the s3 constructor (class)
@@ -56,5 +57,16 @@ function create(req, res) {
     })
 }
 
+async function index(req, res) {
+    try {
+        // this populates the user when you find the posts
+        // so you'll have access to the users information
+        // when you fetch teh posts
+        const products = await Product.find({}).exec();
+        res.status(200).json({ products });
+    } catch (err) {
+        res.json({ error: err })
+    }
+}
 
 /*----- Helper Functions -----*/

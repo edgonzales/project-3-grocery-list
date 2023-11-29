@@ -7,6 +7,7 @@ const upload = multer();
 
 /*---------- Public Routes ----------*/
 router.post('/', upload.single('photo'), productsCtrl.create);
+router.get('/', productsCtrl.index)
 
 /*---------- Protected Routes ----------*/
 
