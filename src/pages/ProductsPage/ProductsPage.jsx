@@ -2,15 +2,41 @@ import PageHeader from "../../components/PageHeader/PageHeader";
 import { Grid, GridRow, Card } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import AllProducts from "../../components/AllProducts/AllProducts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import tokenService from "../../utils/tokenService";
 
 export default function ProductsPage() {
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        // This useEffect is called when the page loads
+
+        // Don't forget to call the function
+        getProducts();
+    }, []);
+
+    // C(R)UD
+    async function getProducts() {
+        try {
+            const response = await fetch("/api/products", {
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + tokenService.getToken(),
+                },
+            });
+            const data = await response.json();
+            console.log(data);
+            setProducts(data.products);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     function handleClick() {
         navigate('/addProduct')
     }
+
 
     return (
         <Grid centered>
