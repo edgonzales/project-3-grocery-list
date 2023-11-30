@@ -1,10 +1,11 @@
-import { Grid, GridRow } from "semantic-ui-react";
+import { Grid, GridRow, Segment } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import AllProducts from "../../components/AllProducts/AllProducts";
 import { useState, useEffect } from "react";
 import tokenService from "../../utils/tokenService";
+import PageHeader from "../../components/PageHeader/PageHeader";
 
-export default function ProductsPage({ logout }, PageHeader) {
+export default function ProductsPage({ handleLogout }) {
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
 
@@ -54,27 +55,30 @@ export default function ProductsPage({ logout }, PageHeader) {
 
     return (
         <>
-
-            <Grid centered>
+            {/* <PageHeader handleLogout={handleLogout}/> */}
+            <Grid>
                 <GridRow>
+                    <button onClick={handleLogout}>
+                        Logout
+                    </button>
                 </GridRow>
-                <GridRow>
+                <GridRow centered>
                     <h1>Products</h1>
                 </GridRow>
-                <GridRow>
+                <GridRow centered>
                     <div className="ui action input">
                         <input type="text" placeholder="Search..." />
                         {/* handleSearch is needed for search button */}
                         <button className="ui button">Search</button>
                     </div>
                 </GridRow>
-                <GridRow>
+                <GridRow centered>
                     <AllProducts
                         products={products}
                         deleteProduct={deleteProduct}
                     />
                 </GridRow>
-                <GridRow>
+                <GridRow centered>
                     <button
                         onClick={handleClick}
                         className="positive ui button">

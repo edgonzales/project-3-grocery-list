@@ -1,12 +1,16 @@
-import { Header, Segment } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
-
-export default function PageHeader({ user, logout }) {
+export default function PageHeader({ handleLogout }) {
+    
     return (
-        <Segment>
-            <Header as='h2' >
-                This is the HEADER!
-            </Header>
+        <Segment textAlign='right'>
+            <Link 
+                onChange={handleLogout}
+                
+            >
+                Logout
+            </Link>
         </Segment>
     )
 }

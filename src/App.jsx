@@ -14,11 +14,11 @@ function App() {
   const [user, setUser] = useState(userService.getUser());
 
   // 
-  function logout() {
+  function handleLogout() {
     userService.logout();
     setUser(null);
+    
   }
-
 
   function handleSignUpOrLogin() {
     setUser(userService.getUser());
@@ -54,7 +54,7 @@ function App() {
       />
       <Route
         path="/products"
-        element={<ProductsPage />}
+        element={<ProductsPage handleLogout={handleLogout}/>}
       />
       <Route
         path="/addProduct"
