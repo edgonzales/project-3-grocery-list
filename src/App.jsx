@@ -58,7 +58,7 @@ function App() {
       />
       <Route
         path="/addProduct"
-        element={<AddProductPage />}
+        element={<AddProductPage handleLogout={handleLogout} />}
       />
 
 

@@ -73,7 +73,7 @@ async function index(req, res) {
 async function deleteProduct(req, res){
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
-        res.json({data: 'like removed'})
+        res.json({data: 'product removed'})
     } catch(err){
         res.status(400).json({err})
     }

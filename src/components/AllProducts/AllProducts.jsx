@@ -8,7 +8,7 @@ export default function AllProducts({ products, itemsPerRow, deleteProduct }) {
 		return <ProductCard 
 				product={product} 
 				key={product._id}
-				deleteProduct={deleteProduct}  
+				deleteProduct={deleteProduct}
 			/>
 	})
 

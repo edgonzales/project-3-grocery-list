@@ -1,9 +1,11 @@
-import { Grid, GridRow, Segment } from "semantic-ui-react";
+import { Grid, GridRow } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
-import AllProducts from "../../components/AllProducts/AllProducts";
 import { useState, useEffect } from "react";
+
 import tokenService from "../../utils/tokenService";
-import PageHeader from "../../components/PageHeader/PageHeader";
+
+import AllProducts from "../../components/AllProducts/AllProducts";
+import SearchProducts from "../../components/SearchProducts/SearchProducts";
 
 export default function ProductsPage({ handleLogout }) {
     const [products, setProducts] = useState([]);
@@ -48,6 +50,10 @@ export default function ProductsPage({ handleLogout }) {
         }
     }
 
+    async function searchProducts() {
+
+    }
+
     function handleClick() {
         navigate('/addProduct')
     }
@@ -55,9 +61,8 @@ export default function ProductsPage({ handleLogout }) {
 
     return (
         <>
-            {/* <PageHeader handleLogout={handleLogout}/> */}
             <Grid>
-                <GridRow>
+                <GridRow >
                     <button onClick={handleLogout}>
                         Logout
                     </button>
@@ -66,18 +71,17 @@ export default function ProductsPage({ handleLogout }) {
                     <h1>Products</h1>
                 </GridRow>
                 <GridRow centered>
-                    <div className="ui action input">
-                        <input type="text" placeholder="Search..." />
-                        {/* handleSearch is needed for search button */}
-                        <button className="ui button">Search</button>
-                    </div>
-                </GridRow>
-                <GridRow centered>
-                    <AllProducts
+                    <SearchProducts
                         products={products}
                         deleteProduct={deleteProduct}
                     />
                 </GridRow>
+                {/* <GridRow centered>
+                    <AllProducts
+                        products={products}
+                        deleteProduct={deleteProduct}
+                    />
+                </GridRow> */}
                 <GridRow centered>
                     <button
                         onClick={handleClick}
