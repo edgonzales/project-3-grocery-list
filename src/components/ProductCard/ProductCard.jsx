@@ -8,7 +8,11 @@ function handleClick(){
 
     return (
         <Card>
-            <Image src={`${product.photoUrl}`} wrapped ui={false} />
+            <Image 
+                src={`${product.photoUrl}`} 
+                wrapped ui={false}
+                size="large"
+            />
             <Card.Content>
                 <Card.Description>{product.productName}</Card.Description>
                 <Card.Description>${product.price}</Card.Description>

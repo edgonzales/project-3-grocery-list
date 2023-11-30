@@ -6,8 +6,7 @@ export default function PageHeader({ handleLogout }) {
     return (
         <Segment textAlign='right'>
             <Link 
-                onChange={handleLogout}
-                
+                onClick={handleLogout}
             >
                 Logout
             </Link>

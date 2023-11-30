@@ -1,4 +1,4 @@
-import { Grid, GridRow } from "semantic-ui-react";
+import { Grid, GridRow, Header } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -6,6 +6,7 @@ import tokenService from "../../utils/tokenService";
 
 import AllProducts from "../../components/AllProducts/AllProducts";
 import SearchProducts from "../../components/SearchProducts/SearchProducts";
+
 
 export default function ProductsPage({ handleLogout }) {
     const [products, setProducts] = useState([]);
@@ -50,10 +51,6 @@ export default function ProductsPage({ handleLogout }) {
         }
     }
 
-    async function searchProducts() {
-
-    }
-
     function handleClick() {
         navigate('/addProduct')
     }
@@ -62,20 +59,20 @@ export default function ProductsPage({ handleLogout }) {
     return (
         <>
             <Grid>
-                <GridRow >
-                    <button onClick={handleLogout}>
-                        Logout
-                    </button>
+                <GridRow  >
+                    <Header floated="right">
+                        <button onClick={handleLogout}>
+                            Logout
+                        </button>
+                    </Header>
                 </GridRow>
                 <GridRow centered>
                     <h1>Products</h1>
                 </GridRow>
-                <GridRow centered>
-                    <SearchProducts
-                        products={products}
-                        deleteProduct={deleteProduct}
-                    />
-                </GridRow>
+                <SearchProducts
+                    products={products}
+                    deleteProduct={deleteProduct}
+                />
                 {/* <GridRow centered>
                     <AllProducts
                         products={products}
