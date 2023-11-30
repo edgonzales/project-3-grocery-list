@@ -2,7 +2,8 @@ const Product = require('../models/product');
 
 module.exports = {
     create,
-    index
+    index,
+    deleteProduct
 };
 
 // import the s3 constructor (class)
@@ -66,6 +67,15 @@ async function index(req, res) {
         res.status(200).json({ products });
     } catch (err) {
         res.json({ error: err })
+    }
+}
+
+async function deleteProduct(req, res){
+    try {
+        const product = await Product.findByIdAndDelete(req.params.id);
+        res.json({data: 'like removed'})
+    } catch(err){
+        res.status(400).json({err})
     }
 }
 
