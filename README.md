@@ -8,18 +8,21 @@ A MERN stack + CRUD app where a Shopper can prep for their in-person shopping ex
 
 # Technologies Used
 
-- Express.js
-- Mongoose
-- MongoDB
-- Passport.js
-- Cyclic
-- ejs
-- HTML
-- CSS
-
+- MongoDB/Mongoose
+- Express
+- React
+- Node
+- Semantic UI
+  
 # Getting Started
 
 TBD
 
 # Next Steps
 
+Implement: 
+- As a Shopper, I want to create a list to save my products
+- AAS, I want to view details of my product
+- AAS, I want to know the products that are in stock at my local grocery store
+- AAS, I want to add products to my shopping cart
+- AAS, I want to submit an order at my local grocery store
