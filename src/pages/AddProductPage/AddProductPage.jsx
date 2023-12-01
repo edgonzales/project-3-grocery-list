@@ -24,6 +24,7 @@ export default function AddProductPage() {
     for (let key in state) {
       formData.append(key, state[key])
     }
+    navigate('/products')
 
     try {
       // HTTP REQUEST IS GOING TO THE SERVER

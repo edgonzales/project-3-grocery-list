@@ -1,37 +1,23 @@
 import ProductCard from '../ProductCard/ProductCard'
-import { Card, GridRow, Search, Segment } from 'semantic-ui-react'
-import { useEffect, useState } from 'react';
+import { Card, GridRow, Segment } from 'semantic-ui-react'
+import { useState } from 'react';
 
-export default function SearchProducts({ products, itemsPerRow, deleteProduct }) {
+
+export default function SearchProducts({ products, deleteProduct }) {
 
 	const [search, setSearch] = useState('');
-	const [productCardResult, setProductCardResult] = useState(products);
+	const filteredResults = products.filter((p) => 
+		p.productName.toLowerCase().includes(search.toLowerCase())
+	)
 
-	let productCards = products.map((product) => {
+	const productCardResult = filteredResults.map((product) => {
 		return <ProductCard
 			product={product}
 			key={product._id}
 			deleteProduct={deleteProduct}
 		/>
-	});
+	})
 
-
-	function filterBySearch(product) {
-		return product.productName.toLowerCase().includes(search.toLowerCase())
-	}
-
-	useEffect(() => {
-		setProductCardResult(products.filter(filterBySearch).map((product) => {
-			return <ProductCard
-				product={product}
-				key={product._id}
-				deleteProduct={deleteProduct}
-			/>
-		}))
-
-		console.log(productCards);
-	}, [search]
-	)
 
 	return (
 		<>
@@ -52,7 +38,6 @@ export default function SearchProducts({ products, itemsPerRow, deleteProduct })
 					{productCardResult}
 				</Card.Group>
 			</GridRow>
-
 		</>
 	)
 }

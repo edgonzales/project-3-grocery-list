@@ -26,9 +26,10 @@ export default function ProductsPage({ handleLogout }) {
                 },
             });
             const data = await responseFromTheServer.json();
-            getProducts();
             console.log(data);
-
+            setProducts(products.filter((p) => {
+                return p._id !== productId
+            }))
         } catch (err) {
             console.log(err)
         }

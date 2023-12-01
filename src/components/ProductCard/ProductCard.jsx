@@ -16,6 +16,7 @@ function handleClick(){
             <Card.Content>
                 <Card.Description>{product.productName}</Card.Description>
                 <Card.Description>${product.price}</Card.Description>
+                <Card.Description>{product.description}</Card.Description>
             </Card.Content>
             <Button
                 onClick={handleClick}
