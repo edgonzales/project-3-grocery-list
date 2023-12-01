@@ -14,7 +14,6 @@ export default function AddProductPage() {
 
   const [photo, setPhoto] = useState('')
   const [error, setError] = useState('')
-  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -24,7 +23,7 @@ export default function AddProductPage() {
     for (let key in state) {
       formData.append(key, state[key])
     }
-    navigate('/products')
+
 
     try {
       // HTTP REQUEST IS GOING TO THE SERVER
@@ -47,7 +46,8 @@ export default function AddProductPage() {
 
       
       // Now we can update the state!
-      setProducts([data.product, ...products]);
+      // setProducts([data.product, ...products]);
+      navigate('/products')
     } catch (err) {
       console.log(err);
     }
@@ -142,7 +142,8 @@ export default function AddProductPage() {
                 onChange={handleFileInput}
               />
             </Form.Field>
-            <Button type="submit" className="btn">
+            <Button>Cancel</Button>
+            <Button type="submit" className="btn positive ui button">
               Add
             </Button>
           </Segment>

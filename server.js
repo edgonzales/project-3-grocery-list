@@ -43,5 +43,5 @@ app.listen(PORT, () => {
   console.log();
   console.log(`  App running in port ${PORT}`);
   console.log();
-  console.log(`  > Local: \x1b[36mhttp://localhost:\x1b[1m${PORT}/\x1b[0m`);
+  console.log(`  > Local: \x1b[36mhttp://localhost:\x1b[1m${PORT}/\x1b[0m/login`);
 });

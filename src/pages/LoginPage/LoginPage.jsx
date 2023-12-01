@@ -23,7 +23,7 @@ export default function LoginPage({ handleSignUpOrLogin }) {
     try {
       // We always pass in an OBJECT as the data we want to send to the server
       await userService.login(state)// making the http request to the server
-       navigate('/products')
+      navigate('/products')
       handleSignUpOrLogin(); // this comes from app.js as a prop, which it gets the token from localstorage and stores the decoded 
       // token in the app.js state
     } catch (err) {
