@@ -9,6 +9,7 @@ require("./config/database");
 // Require controllers here
 
 const app = express();
+app.set('view engine', 'ejs');
 
 const userRouter = require("./routes/api/users")
 const productRouter = require('./routes/api/products');
@@ -28,8 +29,22 @@ app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 
 // "catch all" route
+if(process.env.IS_PRODUCTION){
+
+  const manifest = require('./dist/manifest.json');
+
+  app.use(express.static(path.join(__dirname, "dist")));
+
+  // "catch all" route
+  app.get('/*', function(req, res) {
+    res.render(path.join(__dirname, 'dist', 'index.ejs'), {manifest});
+  });
+
+
+}
+
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, './','index.html'));
 });
 
 
